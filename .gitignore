@@ -68,3 +68,7 @@ public/assets/me/clean_Gemini_*.png
 *.swp
 *.swo
 *~
+
+.vercel
+.env*
+!.env.example

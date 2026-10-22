@@ -4,9 +4,11 @@ Personal site for **Akhil**, a Full-Stack AI Developer in Hyderabad, Telangana. 
 dark editorial "printed spec-sheet" identity: paper-and-ink palette, square edges, visible column
 guides, and a scroll ruler down the right edge.
 
-Live site: <https://YOUR-DOMAIN-HERE> — deployed on Vercel. *(Set this once you know the domain;
-it also goes in `index.html` `og:url`/`canonical`, `public/sitemap.xml` and `public/robots.txt`,
-which still carry the `https://example.com` placeholder.)*
+Live site: **https://portfolio-drab-nu-zld06dohvm.vercel.app**
+
+Deployed on Vercel from this repo. The domain is set in `index.html` (`og:url`, `canonical`),
+`public/sitemap.xml` and `public/robots.txt` — change all four together if it moves.
+
 
 ---
 

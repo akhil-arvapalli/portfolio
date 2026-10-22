@@ -12,6 +12,10 @@ The site is deployed continuously from `main`; there are no published version ta
 ## [Unreleased]
 
 ### Added
+- **Deployed to Vercel** — https://portfolio-drab-nu-zld06dohvm.vercel.app. The `example.com`
+  placeholders in `index.html` (`og:url`, `canonical`), `public/sitemap.xml`, `public/robots.txt`
+  and `.env.example` are now the real domain.
+
 - **README.md** — setup, scripts, stack, design tokens, the photography workflow, deployment and
   accessibility notes.
 - **CHANGELOG.md** — this file.
@@ -45,8 +49,7 @@ The site is deployed continuously from `main`; there are no published version ta
   `brain/ALPHA.md` without creating the directory. It now creates `brain/` first.
 - **`pnpm lint` failed on the audit scripts.** `scripts/gap-audit.mjs` and `scripts/reveal-check.mjs`
   hand browser callbacks to `page.evaluate()`, so they legitimately use DOM globals. The ESLint
-  config now gives `scripts/**/*.mjs` the browser globals. Lint is back to 0 errors (4 pre-existing
-  `exhaustive-deps` warnings in `GlassSurface.tsx` remain).
+  config now gives `scripts/**/*.mjs` the browser globals. Lint is back to 0 errors.
 
 ### Changed
 - `.env.example` now documents `CONTACT_TO_EMAIL`, which `api/contact.ts` reads but was missing.
@@ -195,6 +198,7 @@ The site is deployed continuously from `main`; there are no published version ta
   `https://example.com`. Replace them with the real domain after the first deploy.
 - `FORMSPREE_ID` is unset, so the contact form falls back to the visitor's mail app. The optional
   `api/contact.ts` handler needs `RESEND_API_KEY` and `CONTACT_TO_EMAIL`.
-- `pnpm lint` reports 4 `exhaustive-deps` warnings in
-  `src/components/rb/GlassSurface/GlassSurface.tsx`. No errors.
+- `pnpm lint` is clean — 0 errors, 0 warnings.
 - The Highstar display font needs a paid license for promotional or commercial use.
+- The Vercel project is not connected to the GitHub repo, so pushes do not trigger a build yet.
+  Run `vercel git connect --scope akhil-arvapallis-projects` to wire that up.
