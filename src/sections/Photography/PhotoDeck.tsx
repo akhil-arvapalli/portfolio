@@ -2,8 +2,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import photoData from "@/content/photos.json";
 
-type Photo = { name: string; alt: string; width: number; height: number };
+type PhotoSettings = { focal: string; aperture: string; shutter: string; iso: string };
+type Photo = { name: string; alt: string; settings?: PhotoSettings; width: number; height: number };
 const PHOTOS = photoData as Photo[];
+
+/** "35MM · F/2.8 · 1/250S · ISO 100" for the frame counter line. */
+const settingsLine = (s?: PhotoSettings) =>
+  s ? [s.focal, s.aperture, s.shutter, s.iso].filter(Boolean).join(" · ") : "";
 
 /** Where each print sits in the pile: 0 = on top, 1 and 2 = peeking out behind it. */
 const POS = [
@@ -195,9 +200,16 @@ export default function PhotoDeck() {
           {["left-3 top-3 border-l border-t", "right-3 top-3 border-r border-t", "bottom-3 left-3 border-b border-l", "bottom-3 right-3 border-b border-r"].map((c) => (
             <span key={c} className={`absolute size-6 border-white/80 ${c}`} />
           ))}
-          <span className="absolute bottom-4 left-12 whitespace-nowrap bg-black/35 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
-            Frame {String(index + 1).padStart(2, "0")}
-            {n > 1 ? ` / ${String(n).padStart(2, "0")}` : ""}
+          <span className="absolute bottom-4 left-12 flex items-baseline gap-4 whitespace-nowrap">
+            <span className="bg-black/35 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+              Frame {String(index + 1).padStart(2, "0")}
+              {n > 1 ? ` / ${String(n).padStart(2, "0")}` : ""}
+            </span>
+            {settingsLine(PHOTOS[index].settings) ? (
+              <span className="hidden truncate font-mono text-[10px] uppercase tracking-[0.16em] text-white/75 [text-shadow:0_1px_3px_rgba(0,0,0,0.6)] [@media(min-width:768px)]:inline-block">
+                {settingsLine(PHOTOS[index].settings)}
+              </span>
+            ) : null}
           </span>
         </div>
         <p className="sr-only" aria-live="polite">{`Photo ${index + 1} of ${n}: ${PHOTOS[index].alt}`}</p>

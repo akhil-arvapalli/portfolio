@@ -23,8 +23,19 @@ The site is deployed continuously from `main`; there are no published version ta
 - **scripts/lighthouse.mjs** — `pnpm lighthouse` referenced a script that did not exist. The new
   one waits for the preview server, runs Lighthouse over mobile emulation with 4x CPU throttling
   and prints a score summary alongside the failing audits.
+- **Camera settings in the photography pile.** Each photo now carries its own focal length,
+  aperture, shutter speed and ISO, shown next to the frame counter as plain text
+  (`35MM · F/2.8 · 1/250S · ISO 100`). The values are placeholders — edit them in
+  `src/content/photos.json`. `pnpm photos` keeps them across regenerations and fills in defaults
+  for photos that do not have any yet.
+- **`SectionHeading`** — the FIG./label/title block split out of `SectionHeader`, so a section can
+  put its headline inside a column next to a visual instead of in the full-width header row.
 
 ### Fixed
+- **The Photography headline had a hole in it.** "BEYOND" and "code." were a headline apart, and
+  another 125px of dead space sat between "code." and the paragraph. The heading now sits in the
+  left column beside the photo stack with a 0.87 line-height and "code." pulled up by -0.1em, and
+  the paragraph follows 2rem below it. The left group is centred against the photo stack.
 - **The cursor vanished over project rows.** The index rows flip to an ink background on hover
   (`hover:bg-ink`), but the cursor kept its paper-band navy — navy on navy, effectively invisible.
   The cursor now reads the scoped `--color-base` of whatever is under the pointer and inverts with

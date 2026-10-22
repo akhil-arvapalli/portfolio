@@ -100,6 +100,15 @@ To add or swap photos:
 3. Edit the `alt` text in `src/content/photos.json` for any new entry (the script writes a `TODO:`
    placeholder for names it has not seen before).
 
+Each entry also carries a `settings` object — the lens and exposure shown next to the frame
+counter in the pile. The shipped values are placeholders; edit them to match the real shot:
+
+```json
+"settings": { "focal": "35MM", "aperture": "F/2.8", "shutter": "1/250S", "iso": "ISO 100" }
+```
+
+`pnpm photos` preserves these across regenerations and fills in defaults for new photos.
+
 The sources should already be cropped to the frame's 16:11 shape and have EXIF/GPS stripped.
 
 ## Configuration

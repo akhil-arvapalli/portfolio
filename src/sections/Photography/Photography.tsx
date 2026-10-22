@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { SectionHeader, Reveal } from "@/components/motion";
+import { SectionHeading, Reveal } from "@/components/motion";
 import { LINKS } from "@/content/content";
 import PhotoDeck from "./PhotoDeck";
 import { isLive } from "@/lib/links";
@@ -63,24 +63,32 @@ export default function Photography() {
     <section id="photography" ref={ref} {...handlers} className="band theme-bordo section relative overflow-hidden">
       {node}
       <div className="wrap">
-        <SectionHeader num="06" label="Photography" title={["Beyond", <><em>code.</em></>]} />
-
         <div className="grid items-center gap-10 lg:grid-cols-12">
-          <Reveal className="lg:col-span-7">
-            <p className="font-serif text-[clamp(1.8rem,3.2vw,2.8rem)] leading-[1.12] text-ink">{LINKS.photoBlurb}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              {isLive(LINKS.photoPortfolio) && (
-                <a href={LINKS.photoPortfolio} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
-                  Portfolio <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
-                </a>
-              )}
-              {isLive(LINKS.instagram) && (
-                <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className="btn">
-                  Instagram {LINKS.instagramHandle} <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
-                </a>
-              )}
-            </div>
-          </Reveal>
+          <div className="lg:col-span-7">
+            <SectionHeading
+              num="06"
+              label="Photography"
+              title={["Beyond", <><em>code.</em></>]}
+              titleStyle={{ lineHeight: 0.87 }}
+              lineStyles={[{ marginTop: 0 }, { marginTop: "-0.1em" }]}
+            />
+
+            <Reveal delay={0.06}>
+              <p className="mt-8 font-serif text-[clamp(1.8rem,3.2vw,2.8rem)] leading-[1.12] text-ink">{LINKS.photoBlurb}</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {isLive(LINKS.photoPortfolio) && (
+                  <a href={LINKS.photoPortfolio} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
+                    Portfolio <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
+                  </a>
+                )}
+                {isLive(LINKS.instagram) && (
+                  <a href={LINKS.instagram} target="_blank" rel="noopener noreferrer" className="btn">
+                    Instagram {LINKS.instagramHandle} <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
+                  </a>
+                )}
+              </div>
+            </Reveal>
+          </div>
 
           <Reveal delay={0.08} className="lg:col-span-5">
             <PhotoDeck />

@@ -1,5 +1,5 @@
 import { motion, useInView, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
-import { useRef, type ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { DUR, EASE, VIEWPORT } from "@/lib/motion";
 
@@ -44,6 +44,9 @@ export function LineReveal({
   trigger = "view",
   active = true,
   pad = 0.07,
+  lineClassName,
+  lineStyle,
+  lineStyles,
 }: {
   lines: ReactNode[];
   className?: string;
@@ -51,6 +54,12 @@ export function LineReveal({
   trigger?: "view" | "mount";
   active?: boolean;
   pad?: number;
+  /** Applied to every line wrapper — use for per-line leading/tightening. */
+  lineClassName?: string;
+  /** Applied to every line wrapper, e.g. a negative margin to pull lines together. */
+  lineStyle?: CSSProperties;
+  /** Per-line styles, indexed to match `lines`. Overrides `lineStyle` for that line. */
+  lineStyles?: (CSSProperties | undefined)[];
 }) {
   const reduced = useReducedMotion();
   const ref = useRef<HTMLSpanElement>(null);
@@ -59,7 +68,11 @@ export function LineReveal({
   return (
     <span ref={ref} className={cn("block", className)}>
       {lines.map((line, i) => (
-        <span key={i} className="block overflow-hidden" style={{ paddingBlock: `${pad}em`, marginBlock: `-${pad}em` }}>
+        <span
+          key={i}
+          className={cn("block overflow-hidden", lineClassName)}
+          style={{ paddingBlock: `${pad}em`, marginBlock: `-${pad}em`, ...lineStyle, ...lineStyles?.[i] }}
+        >
           <motion.span
             className="block will-change-transform"
             initial={reduced ? false : { y: "108%" }}
@@ -74,6 +87,53 @@ export function LineReveal({
   );
 }
 
+/**
+ * The FIG. number / rule / label eyebrow plus the big condensed title.
+ * Split out of SectionHeader so a section can place its headline inside a
+ * column (next to a visual) instead of in the full-width header row.
+ */
+export function SectionHeading({
+  num,
+  label,
+  title,
+  className,
+  titleClassName,
+  titleStyle,
+  lineClassName,
+  lineStyle,
+  lineStyles,
+  animate = true,
+}: {
+  num: string;
+  label: string;
+  title: ReactNode[];
+  className?: string;
+  titleClassName?: string;
+  titleStyle?: CSSProperties;
+  lineClassName?: string;
+  lineStyle?: CSSProperties;
+  lineStyles?: (CSSProperties | undefined)[];
+  /** Set false when an ancestor already animates the block in. */
+  animate?: boolean;
+}) {
+  const eyebrow = (
+    <p className="eyebrow flex items-center gap-3 !text-ink">
+      <span aria-hidden className="text-accent">+</span>
+      FIG. {num}
+      <span aria-hidden className="h-px w-10 bg-ink/40" />
+      <span className="!text-ink-mute">{label}</span>
+    </p>
+  );
+  return (
+    <div className={className}>
+      {animate ? <Reveal y={10}>{eyebrow}</Reveal> : eyebrow}
+      <h2 className={cn("display mt-4 text-[clamp(3.2rem,8vw,7.25rem)]", titleClassName)} style={titleStyle}>
+        <LineReveal lines={title} lineClassName={lineClassName} lineStyle={lineStyle} lineStyles={lineStyles} />
+      </h2>
+    </div>
+  );
+}
+
 /** Drafting-sheet section header: FIG. number, rule, label, then a big condensed title. */
 export function SectionHeader({
   num,
@@ -81,28 +141,39 @@ export function SectionHeader({
   title,
   aside,
   className,
+  titleClassName,
+  titleStyle,
+  lineClassName,
+  lineStyle,
+  lineStyles,
 }: {
   num: string;
   label: string;
   title: ReactNode[];
   aside?: ReactNode;
   className?: string;
+  /** Applied to the <h2> — e.g. a tighter leading for a two-word headline. */
+  titleClassName?: string;
+  titleStyle?: CSSProperties;
+  /** Applied to every headline line wrapper. */
+  lineClassName?: string;
+  lineStyle?: CSSProperties;
+  /** Per-line styles, indexed to match `title`. */
+  lineStyles?: (CSSProperties | undefined)[];
 }) {
   return (
     <header className={cn("mb-[var(--head-gap)] grid items-end gap-6 lg:grid-cols-12", className)}>
-      <div className="lg:col-span-8">
-        <Reveal y={10}>
-          <p className="eyebrow flex items-center gap-3 !text-ink">
-            <span aria-hidden className="text-accent">+</span>
-            FIG. {num}
-            <span aria-hidden className="h-px w-10 bg-ink/40" />
-            <span className="!text-ink-mute">{label}</span>
-          </p>
-        </Reveal>
-        <h2 className="display mt-4 text-[clamp(3.2rem,8vw,7.25rem)]">
-          <LineReveal lines={title} />
-        </h2>
-      </div>
+      <SectionHeading
+        num={num}
+        label={label}
+        title={title}
+        className="lg:col-span-8"
+        titleClassName={titleClassName}
+        titleStyle={titleStyle}
+        lineClassName={lineClassName}
+        lineStyle={lineStyle}
+        lineStyles={lineStyles}
+      />
       {aside ? (
         <Reveal delay={0.12} className="border-l border-ink/30 pl-5 text-ink-soft lg:col-span-4 lg:mb-1">
           {aside}

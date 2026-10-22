@@ -2,72 +2,144 @@
   {
     "name": "01-temple",
     "alt": "A gold and blue temple tower against a cloudy sky, with the sun glowing low on the left",
+    "settings": {
+      "focal": "35MM",
+      "aperture": "F/2.8",
+      "shutter": "1/250S",
+      "iso": "ISO 100"
+    },
     "width": 1280,
     "height": 879
   },
   {
     "name": "02-sunset-palms",
     "alt": "Palm trees in silhouette against a deep orange and blue sunset sky",
+    "settings": {
+      "focal": "50MM",
+      "aperture": "F/1.8",
+      "shutter": "1/500S",
+      "iso": "ISO 100"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "03-baby-monkey",
     "alt": "Close portrait of a young monkey with large ears, looking off to the side against a blurred green background",
+    "settings": {
+      "focal": "85MM",
+      "aperture": "F/1.8",
+      "shutter": "1/320S",
+      "iso": "ISO 200"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "04-river-valley",
     "alt": "A river winding between forested green hills under a cloudy sky",
+    "settings": {
+      "focal": "24MM",
+      "aperture": "F/8",
+      "shutter": "1/125S",
+      "iso": "ISO 100"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "05-spiral-skylight",
     "alt": "Looking up the spiral ramps of a parking structure toward a round glass skylight",
+    "settings": {
+      "focal": "16MM",
+      "aperture": "F/5.6",
+      "shutter": "1/60S",
+      "iso": "ISO 400"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "06-street-dogs",
     "alt": "Two brown-and-white dogs resting on a paved street",
+    "settings": {
+      "focal": "35MM",
+      "aperture": "F/2",
+      "shutter": "1/250S",
+      "iso": "ISO 100"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "07-fisherman",
     "alt": "A fisherman standing in a small wooden boat near the shore of calm turquoise water",
+    "settings": {
+      "focal": "70MM",
+      "aperture": "F/4",
+      "shutter": "1/800S",
+      "iso": "ISO 100"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "08-tabby-cat",
     "alt": "A tabby cat lying against a plaster wall",
+    "settings": {
+      "focal": "50MM",
+      "aperture": "F/2.8",
+      "shutter": "1/200S",
+      "iso": "ISO 200"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "09-dusk-bridge",
     "alt": "Streaked clouds glowing at dusk over water, with a bridge and hills in silhouette",
+    "settings": {
+      "focal": "35MM",
+      "aperture": "F/11",
+      "shutter": "1/15S",
+      "iso": "ISO 100"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "10-monkey-in-tree",
     "alt": "A monkey climbing a thick tree trunk with green leaves behind it",
+    "settings": {
+      "focal": "85MM",
+      "aperture": "F/2.8",
+      "shutter": "1/400S",
+      "iso": "ISO 400"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "11-wet-street",
     "alt": "Yellow apartment buildings along a rain-wet street lined with trees",
+    "settings": {
+      "focal": "35MM",
+      "aperture": "F/4",
+      "shutter": "1/160S",
+      "iso": "ISO 200"
+    },
     "width": 1280,
     "height": 880
   },
   {
     "name": "12-moon",
     "alt": "The moon in detail against a black sky",
+    "settings": {
+      "focal": "200MM",
+      "aperture": "F/8",
+      "shutter": "1/125S",
+      "iso": "ISO 800"
+    },
     "width": 1280,
     "height": 880
   }

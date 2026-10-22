@@ -15,6 +15,10 @@ const slug = (f) =>
 
 const existing = JSON.parse(await fs.readFile(JSON_PATH, "utf8").catch(() => "[]"));
 const altByName = new Map(existing.map((p) => [p.name, p.alt]));
+const settingsByName = new Map(existing.map((p) => [p.name, p.settings]));
+
+// Placeholder camera settings for photos that do not have any yet.
+const DEFAULT_SETTINGS = { focal: "35MM", aperture: "F/2.8", shutter: "1/250S", iso: "ISO 100" };
 
 await fs.mkdir(OUT, { recursive: true });
 const files = (await fs.readdir(SRC)).filter((f) => /\.(jpe?g|png|webp|avif|tiff?)$/i.test(f)).sort();
@@ -38,6 +42,7 @@ for (const f of files) {
   list.push({
     name,
     alt: altByName.get(name) ?? "TODO: describe this photo for screen readers",
+    settings: settingsByName.get(name) ?? DEFAULT_SETTINGS,
     width: outW,
     height: outH,
   });
