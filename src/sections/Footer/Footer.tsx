@@ -46,7 +46,7 @@ export default function Footer() {
   const links: { label: string; href: string }[] = [
     { label: "GitHub", href: LINKS.github },
     { label: "LinkedIn", href: LINKS.linkedin },
-    { label: "Photography", href: LINKS.photoPortfolio },
+    { label: "Full Album", href: LINKS.photoPortfolio },
     { label: "Instagram", href: LINKS.instagram },
     { label: "LeetCode", href: LINKS.leetcode },
     { label: "Email", href: `mailto:${LINKS.email}` },

@@ -78,7 +78,7 @@ export default function Photography() {
               <div className="mt-8 flex flex-wrap gap-3">
                 {isLive(LINKS.photoPortfolio) && (
                   <a href={LINKS.photoPortfolio} target="_blank" rel="noopener noreferrer" className="btn btn-solid">
-                    Portfolio <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
+                    Full Album <ArrowUpRight size={14} strokeWidth={1.75} aria-hidden />
                   </a>
                 )}
                 {isLive(LINKS.instagram) && (

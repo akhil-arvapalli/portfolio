@@ -50,6 +50,10 @@ The site is deployed continuously from `main`; there are no published version ta
 
 ### Changed
 - `.env.example` now documents `CONTACT_TO_EMAIL`, which `api/contact.ts` reads but was missing.
+- **The album button no longer says "Portfolio".** This site *is* the portfolio, so a "Portfolio" button
+  promising another portfolio was circular — and the link actually opens a Google Photos shared
+  album. It now reads "Full Album" in the Photography section, and the footer link to the same
+  destination was aligned with it (it read "Photography" before).
 
 ---
 
