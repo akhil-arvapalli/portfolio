@@ -18,6 +18,27 @@ The site is deployed continuously from `main`; there are no published version ta
 - **LICENSE** — MIT.
 - **.gitignore** — node_modules, build output, env files, logs, Lighthouse/Playwright artifacts,
   the downloaded font cache and AI-tooling scratch logs.
+- **.gitattributes** — LF normalisation in the repo, CRLF for Windows scripts, binary rules for
+  images, fonts and PDFs.
+- **scripts/lighthouse.mjs** — `pnpm lighthouse` referenced a script that did not exist. The new
+  one waits for the preview server, runs Lighthouse over mobile emulation with 4x CPU throttling
+  and prints a score summary alongside the failing audits.
+
+### Fixed
+- **The cursor vanished over project rows.** The index rows flip to an ink background on hover
+  (`hover:bg-ink`), but the cursor kept its paper-band navy — navy on navy, effectively invisible.
+  The cursor now reads the scoped `--color-base` of whatever is under the pointer and inverts with
+  it: cream over a hovered row, navy back over the paper, and the cream/navy of whichever band it
+  is in. Buttons that invert on hover follow the same rule.
+- **`pnpm assets:report` crashed on a fresh clone.** `scripts/alpha-check.mjs` wrote to
+  `brain/ALPHA.md` without creating the directory. It now creates `brain/` first.
+- **`pnpm lint` failed on the audit scripts.** `scripts/gap-audit.mjs` and `scripts/reveal-check.mjs`
+  hand browser callbacks to `page.evaluate()`, so they legitimately use DOM globals. The ESLint
+  config now gives `scripts/**/*.mjs` the browser globals. Lint is back to 0 errors (4 pre-existing
+  `exhaustive-deps` warnings in `GlassSurface.tsx` remain).
+
+### Changed
+- `.env.example` now documents `CONTACT_TO_EMAIL`, which `api/contact.ts` reads but was missing.
 
 ---
 
@@ -141,8 +162,7 @@ The site is deployed continuously from `main`; there are no published version ta
 - `og:url`, `canonical`, `public/sitemap.xml` and `public/robots.txt` still point at
   `https://example.com`. Replace them with the real domain after the first deploy.
 - `FORMSPREE_ID` is unset, so the contact form falls back to the visitor's mail app. The optional
-  `api/contact.ts` handler needs `RESEND_API_KEY` (and `CONTACT_TO_EMAIL`, which is not yet in
-  `.env.example`).
-- `pnpm lint` reports pre-existing errors in `scripts/gap-audit.mjs` (browser globals without the
-  browser env) and exhaustive-deps warnings in `src/components/rb/GlassSurface/GlassSurface.tsx`.
+  `api/contact.ts` handler needs `RESEND_API_KEY` and `CONTACT_TO_EMAIL`.
+- `pnpm lint` reports 4 `exhaustive-deps` warnings in
+  `src/components/rb/GlassSurface/GlassSurface.tsx`. No errors.
 - The Highstar display font needs a paid license for promotional or commercial use.

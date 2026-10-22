@@ -23,5 +23,13 @@ export default tseslint.config(
     languageOptions: {
       globals: { ...globals.node },
     },
+  },
+  {
+    // The audit scripts drive a real browser via Playwright, so the callbacks
+    // they hand to page.evaluate() run in the browser and use DOM globals.
+    files: ["scripts/**/*.mjs"],
+    languageOptions: {
+      globals: { ...globals.node, ...globals.browser },
+    },
   }
 );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 
 type Mode = "idle" | "link" | "label";
@@ -17,7 +17,9 @@ export default function Cursor() {
   const [label, setLabel] = useState("");
   const [pressed, setPressed] = useState(false);
   const [visible, setVisible] = useState(false);
-  const [onDark, setOnDark] = useState(false);
+  const [ink, setInk] = useState(LIGHT_INK);
+  const flipEl = useRef<HTMLElement | null>(null);
+  const flipInk = useRef<string>("");
 
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -44,7 +46,6 @@ export default function Cursor() {
     let scrollRaf = 0;
 
     const classify = (t: Element | null) => {
-      setOnDark(!!t?.closest(".theme-dark, .theme-bordo"));
       const tagged = t?.closest<HTMLElement>("[data-cursor]");
       if (tagged?.dataset.cursor) {
         setMode("label");
@@ -54,6 +55,22 @@ export default function Cursor() {
       } else {
         setMode("idle");
       }
+
+      // Rows and buttons flip to an ink background on hover, so the cursor has
+      // to flip to the paper colour or it vanishes against them. Read the
+      // scoped --color-base of whatever is under the pointer: in a dark band
+      // that is the dark navy, on paper it is the cream.
+      const flipping = t?.closest<HTMLElement>('[class*="hover:bg-ink"], .btn');
+      if (flipping) {
+        if (flipEl.current !== flipping) {
+          flipEl.current = flipping;
+          flipInk.current = getComputedStyle(flipping).getPropertyValue("--color-base").trim();
+        }
+        setInk(flipInk.current || DARK_INK);
+        return;
+      }
+      flipEl.current = null;
+      setInk(t?.closest(".theme-dark, .theme-bordo") ? DARK_INK : LIGHT_INK);
     };
 
     const onMove = (e: PointerEvent) => {
@@ -102,7 +119,6 @@ export default function Cursor() {
 
   if (!enabled) return null;
 
-  const ink = onDark ? DARK_INK : LIGHT_INK;
   const ring = mode === "label" ? 76 : mode === "link" ? 46 : 30;
 
   return (

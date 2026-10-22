@@ -1,4 +1,3 @@
-﻿/* eslint-disable no-undef */
 import { chromium } from "@playwright/test";
 import sharp from "sharp";
 
