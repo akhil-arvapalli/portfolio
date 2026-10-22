@@ -202,3 +202,7 @@ The site is deployed continuously from `main`; there are no published version ta
 - The Highstar display font needs a paid license for promotional or commercial use.
 - The Vercel project is not connected to the GitHub repo, so pushes do not trigger a build yet.
   Run `vercel git connect --scope akhil-arvapallis-projects` to wire that up.
+- **The live deployment predates the domain fix.** The deployed build is commit `a4f88f5`; the
+  `og:url` / `canonical` / sitemap changes landed in `65ccf43` and are in the repo but not yet on
+  Vercel. Redeploy to pick them up — until then the live pages still advertise
+  `https://example.com`.
