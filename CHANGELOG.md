@@ -12,7 +12,7 @@ The site is deployed continuously from `main`; there are no published version ta
 ## [Unreleased]
 
 ### Added
-- **Deployed to Vercel** — https://akhil-arvapalli-portfolio.vercel.app. The `example.com`
+- **Deployed to Vercel** — https://akhil-arvapalli.vercel.app. The `example.com`
   placeholders in `index.html` (`og:url`, `canonical`), `public/sitemap.xml`, `public/robots.txt`
   and `.env.example` are now the real domain.
 

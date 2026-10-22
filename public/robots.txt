@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://akhil-arvapalli-portfolio.vercel.app/sitemap.xml
+Sitemap: https://akhil-arvapalli.vercel.app/sitemap.xml
