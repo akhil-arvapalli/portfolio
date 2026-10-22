@@ -53,6 +53,11 @@ The site is deployed continuously from `main`; there are no published version ta
   config now gives `scripts/**/*.mjs` the browser globals. Lint is back to 0 errors.
 
 ### Changed
+- **The browser scrollbar is hidden.** The site draws its own scroll ruler down the right edge, so
+  the native scrollbar was redundant. `html` now sets `scrollbar-width: none` for Firefox and
+  `::-webkit-scrollbar { display: none }` for Chrome/Safari/Edge. A `.no-scrollbar` utility class
+  is available for any other scrollable element. Wheel and keyboard scrolling are unaffected, and
+  the custom ruler still tracks position.
 - `.env.example` now documents `CONTACT_TO_EMAIL`, which `api/contact.ts` reads but was missing.
 - **The album button no longer says "Portfolio".** This site *is* the portfolio, so a "Portfolio" button
   promising another portfolio was circular — and the link actually opens a Google Photos shared

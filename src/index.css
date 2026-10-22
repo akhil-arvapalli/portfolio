@@ -111,6 +111,11 @@ html {
   overflow-x: clip;
   color-scheme: light;
   background: var(--color-base);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 body {
   background: var(--color-base);
@@ -223,6 +228,15 @@ body {
 html.has-cursor,
 html.has-cursor *:not(input):not(textarea):not(select) {
   cursor: none !important;
+}
+
+/* utility: hide a scrollbar on any scrollable element */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 @keyframes marquee {
