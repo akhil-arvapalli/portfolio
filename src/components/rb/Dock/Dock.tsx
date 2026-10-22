@@ -126,7 +126,7 @@ const MARGIN = 8;
 const POP = 'cubic-bezier(0.2, 1.25, 0.4, 1)';
 
 const ROOT =
-  'absolute z-10 flex box-border gap-[var(--dock-gap)] p-[var(--dock-pad)] rounded-[calc(var(--dock-base)*var(--dock-round)*0.5_+_var(--dock-pad))] [background:var(--dock-panel)] [box-shadow:inset_0_0_0_1px_var(--dock-panel-edge),inset_0_1px_0_var(--dock-panel-highlight),var(--dock-panel-shadow)] backdrop-blur-[26px] backdrop-saturate-[1.9] touch-none [transition:translate_0.5s_cubic-bezier(0.22,1,0.36,1),opacity_0.2s_ease] data-[hidden]:pointer-events-none data-[hidden]:opacity-0 data-[hidden]:[transition:translate_0.36s_cubic-bezier(0.55,0,0.75,0.15),opacity_0.24s_ease_0.1s] motion-reduce:!transition-none before:absolute before:-z-10 before:hidden before:content-[""] hover:before:block';
+  'absolute z-10 flex box-border gap-[var(--dock-gap)] p-[var(--dock-pad)] rounded-[calc(var(--dock-base)*var(--dock-round)*0.5_+_var(--dock-pad))] [background:var(--dock-panel)] [box-shadow:inset_0_0_0_1px_var(--dock-panel-edge),inset_0_1px_0_var(--dock-panel-highlight),var(--dock-panel-shadow)] backdrop-blur-[34px] backdrop-saturate-[2.2] backdrop-brightness-[1.08] touch-none [transition:translate_0.5s_cubic-bezier(0.22,1,0.36,1),opacity_0.2s_ease] data-[hidden]:pointer-events-none data-[hidden]:opacity-0 data-[hidden]:[transition:translate_0.36s_cubic-bezier(0.55,0,0.75,0.15),opacity_0.24s_ease_0.1s] motion-reduce:!transition-none before:absolute before:-z-10 before:hidden before:content-[""] hover:before:block';
 
 const ROOT_SIDES = {
   bottom:
@@ -146,7 +146,7 @@ const FACE =
   'absolute inset-0 flex items-center justify-center leading-none rounded-[calc(var(--dock-base)*var(--dock-round)*0.5)] [transition:filter_0.2s_ease] group-active:[filter:var(--dock-press)] group-active:[transition-duration:0s] group-data-[open]:[filter:var(--dock-press)] group-data-[open]:[transition-duration:0s] group-focus-visible:outline group-focus-visible:outline-2 group-focus-visible:outline-offset-[3px] group-focus-visible:outline-[color:var(--dock-accent)]';
 
 const FACE_TILE =
-  'overflow-hidden [background:var(--dock-tile)] [box-shadow:inset_0_0_0_1px_var(--dock-tile-edge),inset_0_1px_0_var(--dock-tile-highlight),var(--dock-tile-shadow)] [font-size:calc(var(--dock-base)*0.44)]';
+  'overflow-hidden [background:var(--dock-tile)] [box-shadow:inset_0_0_0_1px_var(--dock-tile-edge),inset_0_1px_0_var(--dock-tile-highlight),var(--dock-tile-shadow)] backdrop-blur-[10px] backdrop-saturate-[1.6] [font-size:calc(var(--dock-base)*0.44)]';
 
 const FACE_BARE = '[font-size:calc(var(--dock-base)*0.62)]';
 
@@ -207,14 +207,17 @@ const MUTED = 'text-[color:var(--dock-menu-muted)]';
 
 const THEMES: Record<'dark' | 'light', Tokens> = {
   dark: {
-    '--dock-panel': 'linear-gradient(180deg, rgba(255, 255, 255, 0.46) 0%, rgba(255, 255, 255, 0.16) 100%)',
-    '--dock-panel-edge': 'rgba(27, 39, 64, 0.22)',
-    '--dock-panel-highlight': 'rgba(255, 255, 255, 0.85)',
-    '--dock-panel-shadow': '0 22px 44px -16px rgba(27, 39, 64, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.25)',
-    '--dock-tile': 'linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0.2) 100%)',
-    '--dock-tile-edge': 'rgba(27, 39, 64, 0.16)',
-    '--dock-tile-highlight': 'rgba(255, 255, 255, 0.9)',
-    '--dock-tile-shadow': '0 4px 10px -4px rgba(27, 39, 64, 0.35)',
+    // iOS-style glass: mostly transparent, so the page reads through the panel.
+    // The blur + saturate on the panel does the work; the gradient only adds the
+    // faint vertical sheen and the top specular edge.
+    '--dock-panel': 'linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.10) 100%)',
+    '--dock-panel-edge': 'rgba(255, 255, 255, 0.30)',
+    '--dock-panel-highlight': 'rgba(255, 255, 255, 0.50)',
+    '--dock-panel-shadow': '0 24px 48px -18px rgba(27, 39, 64, 0.42), 0 0 0 1px rgba(255, 255, 255, 0.18)',
+    '--dock-tile': 'linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.24) 100%)',
+    '--dock-tile-edge': 'rgba(27, 39, 64, 0.14)',
+    '--dock-tile-highlight': 'rgba(255, 255, 255, 0.85)',
+    '--dock-tile-shadow': '0 4px 12px -4px rgba(27, 39, 64, 0.28)',
     '--dock-ink': '#1b2740',
     '--dock-label': 'rgba(27, 39, 64, 0.94)',
     '--dock-label-ink': '#eadbc3',

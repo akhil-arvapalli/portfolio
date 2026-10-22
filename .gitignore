@@ -39,6 +39,12 @@ lh-out.txt
 # AI tooling scratch — working transcripts and stale design notes, not source
 brain/
 session-*.md
+claude-histroy.txt
+
+# Scratch directories used for one-off scripts and screenshots
+.tmp-*/
+.tmp/
+*.tmp/
 
 # Incoming asset bundle — superseded by photos-src/ + src/content/photos.json.
 # Kept out of the public repo on purpose: it contains optional/ extras and

@@ -16,7 +16,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           motion: ["motion"],
-          gsap: ["gsap"],
         },
       },
     },

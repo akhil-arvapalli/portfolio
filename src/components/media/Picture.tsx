@@ -1,7 +1,7 @@
 import { ME_ASSETS, type PortraitAsset } from "@/lib/asset-manifest";
 import { cn } from "@/lib/utils";
 
-export type PictureAsset = "portrait" | "racing" | "passport";
+type PictureAsset = "portrait" | "racing" | "passport";
 
 /**
  * Typed <picture> with avif -> webp -> png fallbacks + srcset.

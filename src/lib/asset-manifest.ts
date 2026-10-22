@@ -1,4 +1,4 @@
-export type AssetVariant = { width: 320 | 640 | 960 | 1280; avif: string; webp: string; png?: string };
+type AssetVariant = { width: 320 | 640 | 960 | 1280; avif: string; webp: string; png?: string };
 
 export type PortraitAsset = {
   key: "portrait" | "racing" | "passport";

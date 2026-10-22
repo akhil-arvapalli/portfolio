@@ -54,6 +54,23 @@ The site is deployed continuously from `main`; there are no published version ta
   promising another portfolio was circular — and the link actually opens a Google Photos shared
   album. It now reads "Full Album" in the Photography section, and the footer link to the same
   destination was aligned with it (it read "Photography" before).
+- **The dock is now proper iOS-style glass.** The panel was already blurring the page, but it was
+  painted with a heavy white gradient that hid the effect. It now uses a much more transparent
+  panel with a stronger blur (34px), higher saturation (2.2×) and a slight brightness lift, so the
+  content behind it reads through the glass. The tiles got their own blur and a crisper edge so
+  they stay distinct from the panel.
+
+### Removed
+- **12 unused React Bits components.** `BlurText`, `GlassIcons`, `GlassSurface`, `GradientText`,
+  `MagicBento`, `Noise`, `ScrollVelocity`, `SplitText`, `SpotlightCard`, `Stepper`, `TargetCursor`
+  and `TiltedCard` were ported in but never rendered anywhere. `src/components/rb/index.ts` now
+  exports only the 8 that are used.
+- **`gsap` and `@gsap/react`** — the site animates with `motion` and `lenis` only; GSAP was never
+  imported. Removing it drops a ~70 KB chunk from the build.
+- **`satori`** — never imported.
+- Dead exports: `MARQUEE_PHRASES` and `CONTACT` (`src/content/content.ts`), `SPRING`
+  (`src/lib/motion.ts`), the `ProjectSlug` / `GpuTier` / `ScrollProgress` types
+  (`src/lib/tokens.ts`), and the unused `src/components/media/index.ts` barrel.
 
 ---
 

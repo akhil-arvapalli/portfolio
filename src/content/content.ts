@@ -240,16 +240,6 @@ export const SKILLS_FULLSTACK = [
   "Earth Engine",
 ] as const;
 
-export const MARQUEE_PHRASES = [
-  "Full-Stack AI Developer · Voice-Agent Builder · RAG Pipelines · Photographer",
-] as const;
-
-
-export const CONTACT = {
-  headline: "Let's build something smart.",
-  copyEmail: true,
-} as const;
-
 export const STATS = [
   { to: PROJECTS.length, label: "projects built" },
   { to: HACKATHONS.length, label: "hackathons" },
