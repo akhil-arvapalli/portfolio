@@ -195,15 +195,13 @@ The site is deployed continuously from `main`; there are no published version ta
 
 ## Known gaps
 
-- `og:url`, `canonical`, `public/sitemap.xml` and `public/robots.txt` still point at
-  `https://example.com`. Replace them with the real domain after the first deploy.
 - `FORMSPREE_ID` is unset, so the contact form falls back to the visitor's mail app. The optional
   `api/contact.ts` handler needs `RESEND_API_KEY` and `CONTACT_TO_EMAIL`.
 - `pnpm lint` is clean — 0 errors, 0 warnings.
 - The Highstar display font needs a paid license for promotional or commercial use.
-- Two leftover aliases are still assigned to older deployments:
-  `akhil-arvapalli-portfolio.vercel.app` and `portfolio-drab-nu-zld06dohvm.vercel.app`. Both
-  serve the same site, so they are harmless, but they can be removed in the Vercel dashboard
-  (Project > Domains > Remove). The dashboard also shows the auto-generated
-  `akhil-arvapalli-akhil-arvapallis-projects.vercel.app`, which is unavoidable while the project
-  is named `akhil-arvapalli` under the `akhil-arvapallis-projects` team.
+- The camera settings in `src/content/photos.json` are placeholders — edit them to match the real
+  shots.
+- Vercel assigns `akhil-arvapalli-akhil-arvapallis-projects.vercel.app` and
+  `akhil-arvapalli-git-main-akhil-arvapallis-projects.vercel.app` automatically, from the project
+  name and team slug. They point at the same deployment as `akhil-arvapalli.vercel.app` and cannot
+  be removed. Use `akhil-arvapalli.vercel.app` in your resume.
