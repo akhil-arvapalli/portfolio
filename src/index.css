@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/inter-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Highstar";
+  src: url("/fonts/Highstar.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kolak";
+  src: url("/fonts/Kolak.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ───────────── One design system: printed spec-sheet. Paper + navy ink, dark bands for rhythm. ───────────── */
+@theme {
+  --color-base: #e8dac2;
+  --color-surface: #f1e7d4;
+  --color-raised: #dcccb0;
+  --color-ink: #1b2740;
+  --color-ink-soft: #33445f;
+  --color-ink-mute: #4d5d75;
+  --color-accent: #632024;
+  --color-bordo: #632024;
+  --color-bordo-hi: #7d2a30;
+  --color-line: rgb(27 39 64 / 0.22);
+
+  --font-display: "Highstar", "Arial Narrow", Impact, sans-serif;
+  --font-accent: "Kolak", "Instrument Serif", Georgia, serif;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-star-movement-bottom: star-movement-bottom 6s linear infinite alternate;
+  --animate-star-movement-top: star-movement-top 6s linear infinite alternate;
+  @keyframes star-movement-bottom {
+    0% { transform: translate(0%, 0%); opacity: 1; }
+    100% { transform: translate(-100%, 0%); opacity: 0; }
+  }
+  @keyframes star-movement-top {
+    0% { transform: translate(0%, 0%); opacity: 1; }
+    100% { transform: translate(100%, 0%); opacity: 0; }
+  }
+}
+
+/* scoped palettes: any element can flip the tokens beneath it */
+.theme-dark {
+  --color-base: #16203a;
+  --color-surface: #1d2a47;
+  --color-raised: #25344f;
+  --color-ink: #eadbc3;
+  --color-ink-soft: #d5b893;
+  --color-ink-mute: #93a6bd;
+  --color-accent: #e2be8a;
+  --color-line: rgb(234 219 195 / 0.2);
+}
+.theme-bordo {
+  --color-base: #632024;
+  --color-surface: #722a2f;
+  --color-raised: #7d3338;
+  --color-ink: #f2e3ca;
+  --color-ink-soft: #e6cba7;
+  --color-ink-mute: #dcb99d;
+  --color-accent: #f0c58f;
+  --color-line: rgb(242 227 202 / 0.28);
+}
+
+:root {
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --section-y: clamp(3rem, 5.2vw, 4.75rem);
+  --head-gap: clamp(1.75rem, 3.2vw, 2.75rem);
+  --grid-gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-x: clip;
+  color-scheme: light;
+  background: var(--color-base);
+}
+body {
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+::selection {
+  background: var(--color-accent);
+  color: var(--color-base);
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@layer components {
+  .wrap {
+    position: relative;
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+  /* drafting-sheet column guides, running through every band */
+  .wrap::before {
+    content: "";
+    position: absolute;
+    inset: 0 var(--gutter);
+    z-index: -1;
+    pointer-events: none;
+    background-image: linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 25% 100%;
+    border-right: 1px solid var(--color-line);
+    opacity: 0.35;
+  }
+  .band {
+    position: relative;
+    z-index: 20;
+    isolation: isolate;
+    background: var(--color-base);
+    color: var(--color-ink);
+  }
+  .section {
+    padding-block: var(--section-y);
+    scroll-margin-top: 3rem;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
+  }
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-synthesis: none;
+    text-transform: uppercase;
+    letter-spacing: 0.012em;
+    line-height: 0.92;
+    color: var(--color-ink);
+  }
+  .display em {
+    font-family: var(--font-accent);
+    font-style: normal;
+    font-weight: 400;
+    font-synthesis: none;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.86em;
+    color: var(--color-accent);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+  }
+  .btn:hover {
+    background: var(--color-ink);
+    color: var(--color-base);
+  }
+  .btn-solid {
+    background: var(--color-ink);
+    color: var(--color-base);
+  }
+  .btn-solid:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-base);
+  }
+}
+
+/* custom cursor: native cursor hides only once ours is live */
+html.has-cursor,
+html.has-cursor *:not(input):not(textarea):not(select) {
+  cursor: none !important;
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.7); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+*.tsbuildinfo
+
+# Environment — never commit real values
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test / audit artifacts
+lighthouse.json
+lh-out.txt
+*.report.html
+/playwright-report/
+/test-results/
+/blob-report/
+.playwright/
+
+# AI tooling scratch — working transcripts and stale design notes, not source
+brain/
+session-*.md
+
+# Incoming asset bundle — superseded by photos-src/ + src/content/photos.json.
+# Kept out of the public repo on purpose: it contains optional/ extras and
+# optional-has-people/ shots of identifiable people who have not consented.
+photos-for-pile/
+
+# Full-resolution source images. public/assets/me keeps only the optimised
+# avif/webp/jpg variants the site actually serves; these 30 MB of intermediates
+# are never requested by the browser and are re-derivable from the originals.
+public/assets/me/portrait.png
+public/assets/me/racing.png
+public/assets/me/portrait_src.png
+public/assets/me/racing_src.png
+public/assets/me/clean_Gemini_*.png
+
+
+# Local font download cache (scripts/og-generate.mjs re-fetches it)
+/scripts/.fonts/
+
+# OS / editor swap files
+*.swp
+*.swo
+*~

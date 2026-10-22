@@ -1,0 +1,74 @@
+[
+  {
+    "name": "01-temple",
+    "alt": "A gold and blue temple tower against a cloudy sky, with the sun glowing low on the left",
+    "width": 1280,
+    "height": 879
+  },
+  {
+    "name": "02-sunset-palms",
+    "alt": "Palm trees in silhouette against a deep orange and blue sunset sky",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "03-baby-monkey",
+    "alt": "Close portrait of a young monkey with large ears, looking off to the side against a blurred green background",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "04-river-valley",
+    "alt": "A river winding between forested green hills under a cloudy sky",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "05-spiral-skylight",
+    "alt": "Looking up the spiral ramps of a parking structure toward a round glass skylight",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "06-street-dogs",
+    "alt": "Two brown-and-white dogs resting on a paved street",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "07-fisherman",
+    "alt": "A fisherman standing in a small wooden boat near the shore of calm turquoise water",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "08-tabby-cat",
+    "alt": "A tabby cat lying against a plaster wall",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "09-dusk-bridge",
+    "alt": "Streaked clouds glowing at dusk over water, with a bridge and hills in silhouette",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "10-monkey-in-tree",
+    "alt": "A monkey climbing a thick tree trunk with green leaves behind it",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "11-wet-street",
+    "alt": "Yellow apartment buildings along a rain-wet street lined with trees",
+    "width": 1280,
+    "height": 880
+  },
+  {
+    "name": "12-moon",
+    "alt": "The moon in detail against a black sky",
+    "width": 1280,
+    "height": 880
+  }
+]

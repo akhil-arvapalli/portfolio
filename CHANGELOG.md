@@ -1,0 +1,148 @@
+# Changelog
+
+All notable changes to this project are documented here.
+
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project uses
+[Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+The site is deployed continuously from `main`; there are no published version tags yet.
+
+---
+
+## [Unreleased]
+
+### Added
+- **README.md** — setup, scripts, stack, design tokens, the photography workflow, deployment and
+  accessibility notes.
+- **CHANGELOG.md** — this file.
+- **LICENSE** — MIT.
+- **.gitignore** — node_modules, build output, env files, logs, Lighthouse/Playwright artifacts,
+  the downloaded font cache and AI-tooling scratch logs.
+
+---
+
+## Round 8 — the 12-photo pile
+
+### Changed
+- The single temple photo is replaced by a 12-photo set (`01-temple` … `12-moon`), already cropped
+  to the frame's 16:11 shape with EXIF/GPS stripped.
+- `src/content/photos.json` now carries all 12 entries with real alt text (no `TODO:` placeholders).
+- `pnpm photos` regenerated the web sizes: 12 × (800 / 1280 / 1920 webp + 1280 jpg) = 48 files,
+  6.38 MB total.
+
+### Removed
+- `photos-src/frame-temple.jpg` and the four `public/assets/photography/frame-temple-*` assets.
+
+### Notes
+- The pile component was already generic — it renders whatever `photos.json` holds — so no
+  component changes were needed.
+- `07-fisherman` (1737px) and `12-moon` (1776px) are narrower than 1920px, so their `-1920.webp`
+  files are not upscaled; `pnpm photos` resizes with `withoutEnlargement`.
+- Verified in Edge at 1440px and 390px: cursor scrub, click, arrow keys and all 12 segment buttons
+  step the pile; scrolling with the cursor over the frame changes the photo while the page still
+  scrolls; no horizontal overflow on mobile; no console errors and no failed requests.
+
+---
+
+## Round 7 — the photo pile
+
+### Changed
+- The Photography frame became a pile of prints. With 2+ photos you can move the cursor across it,
+  scroll with the cursor over it, click/tap, swipe, press arrow keys, or use the segments
+  underneath. With a single photo it stays a still frame.
+
+---
+
+## Round 6 — photography
+
+### Changed
+- The Photography frame shows a real photo from `public/assets/photography/` (webp + jpg fallback).
+- The invented "ƒ/1.8 · 1/250 · ISO 100" readout was removed — the file has no EXIF, so there are
+  no real values to show.
+- The Portfolio button (Google Photos album) now comes before Instagram.
+
+---
+
+## Round 5 — custom fonts
+
+### Changed
+- Headings use **Highstar** (tall condensed caps); accent words use **Kolak** (display serif, no
+  italic, so italics are switched off). Body and labels are unchanged (Inter, JetBrains Mono,
+  Instrument Serif for long statements).
+- Fonts are self-hosted in `public/fonts/` and preloaded in `index.html`. Archivo was removed.
+
+### Notes
+- **Licensing:** Highstar's author note says personal use only; promotional or commercial use needs
+  a paid license. See `public/fonts/LICENSES.md`.
+
+---
+
+## Round 4 — refinement brief
+
+### Removed
+- CausalFunnel, JalPath v2 and the WhatsApp AI bot.
+
+### Changed
+- Internship end date is July 2026 everywhere (education "June 2027" is unchanged).
+- CascadeGuard is labelled "In active development" — no paper link, no "published" wording; the
+  pipeline graphic is labelled a sketch.
+- Throttle Theory links to its Vercel deployment from the resume.
+- PromptWars added under Hackathons as "Participant" — no result claimed, no credential link.
+- The About section was rewritten; identity wording is "Full-Stack AI Developer" site-wide
+  (page title, meta, JSON-LD).
+
+---
+
+## Round 3 — the redesign
+
+### Changed
+- New concept: a printed spec-sheet. Paper (`#e8dac2`) and navy ink, alternating navy and
+  caput-mortium bands, square edges, visible column guides, a scroll ruler on the right.
+- Hero: split layout. Full name stacked on the left, portrait in its own panel on the right, so
+  the name is never covered.
+- Work: an indexed list of builds — builds first, then academic projects (SENTINEL, DepViz). Each
+  opens `/projects/<slug>` with bullets and repo/live links. CascadeGuard is the flagship.
+- The Photography band gained a camera focus reticle that follows the cursor; cursor and ruler
+  recolour by band.
+
+---
+
+## Rounds 1–2 — the original build
+
+### Added
+- The site itself: Vite + React 18 + TS strict + Tailwind v4 + GSAP + Lenis + Motion, deployed on
+  Vercel with a Resend-backed contact handler in `api/contact.ts`.
+- A preloader, custom cursor, section dock, and an eight-section structure: hero, about, stack,
+  work, experience, recognition, photography, contact.
+
+### Fixed
+- **Reveal blank/misplaced:** the portrait canvas ignored `devicePixelRatio`, so the photo drew in
+  the top-left of a bigger canvas with the mask offset from the cursor. Rewritten with DPR-scaled
+  contexts.
+- **"Motion as code" not working:** the app imported `framer-motion` everywhere while the `motion`
+  package sat installed and unused. Everything now imports `motion/react`.
+- **Phantom gaps:** headline reveals observed elements hidden inside their own clip mask, so they
+  never became "in view" and stayed invisible. Fixed in `LineReveal`; section padding is one token
+  (`--section-y`).
+- **Off-theme leftovers:** `color-scheme: light`, `bg-white/40`, `mix-blend-multiply`, an undefined
+  `--band` and an unused `marquee-x` keyframe were removed.
+- **Inconsistent cards:** five card styles, pastel blobs and brutal shadows collapsed into one
+  token set and one `Panel` wrapper for every React Bits card.
+
+### Changed
+- 14 thin sections became 8.
+- Dead code removed: the three.js/R3F scene, the orbit component, the showstopper, GSAP
+  ScrollTrigger usage and the old cursor.
+
+---
+
+## Known gaps
+
+- `og:url`, `canonical`, `public/sitemap.xml` and `public/robots.txt` still point at
+  `https://example.com`. Replace them with the real domain after the first deploy.
+- `FORMSPREE_ID` is unset, so the contact form falls back to the visitor's mail app. The optional
+  `api/contact.ts` handler needs `RESEND_API_KEY` (and `CONTACT_TO_EMAIL`, which is not yet in
+  `.env.example`).
+- `pnpm lint` reports pre-existing errors in `scripts/gap-audit.mjs` (browser globals without the
+  browser env) and exhaustive-deps warnings in `src/components/rb/GlassSurface/GlassSurface.tsx`.
+- The Highstar display font needs a paid license for promotional or commercial use.

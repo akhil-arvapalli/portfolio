@@ -1,0 +1,9 @@
+packages:
+  - "."
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - "@resvg/resvg-js"
+  - "@tailwindcss/oxide"
+  - playwright-core

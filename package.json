@@ -1,0 +1,60 @@
+{
+  "name": "akhil-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "@resvg/resvg-js",
+      "@tailwindcss/oxide",
+      "playwright-core"
+    ]
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "assets:report": "node scripts/alpha-check.mjs",
+    "photos": "node scripts/photos.mjs",
+    "qa:dom": "playwright test tests/dom.spec.ts",
+    "lighthouse": "node scripts/lighthouse.mjs"
+  },
+  "dependencies": {
+    "@fontsource/instrument-serif": "^5.3.0",
+    "@gsap/react": "^2.1.2",
+    "@vercel/analytics": "^1.5.0",
+    "clsx": "^2.1.1",
+    "gsap": "^3.15.0",
+    "lenis": "^1.1.20",
+    "lucide-react": "^1.52.0",
+    "motion": "^14.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.7.0",
+    "react-router-dom": "^6.28.1",
+    "tailwind-merge": "^2.6.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.49.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "satori": "^0.10.14",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.0",
+    "typescript": "~5.6.3",
+    "typescript-eslint": "^8.18.0",
+    "vite": "^6.0.5"
+  }
+}

@@ -1,0 +1,19 @@
+# Normalize line endings in the repo; check out native on the developer's platform.
+* text=auto eol=lf
+
+# Windows scripts must stay CRLF
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+*.ps1   text eol=crlf
+
+# Binary assets — never diff or line-ending-convert these
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.webp  binary
+*.avif  binary
+*.ico   binary
+*.pdf   binary
+*.woff2 binary
+*.woff  binary
+*.ttf   binary

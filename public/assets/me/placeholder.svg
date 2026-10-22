@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" role="img" aria-label="Portrait placeholder — awaiting Akhil's photo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#141417"/>
+      <stop offset="100%" stop-color="#080808"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff4d00" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#ff4d00" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#27272a" stroke-width="1" opacity="0.55"/>
+    </pattern>
+  </defs>
+
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <rect width="800" height="1000" fill="url(#grid)"/>
+  <rect width="800" height="1000" fill="url(#accent)"/>
+
+  <!-- corner brackets: the HUD motif, so the placeholder matches the site language -->
+  <g fill="none" stroke="#3f3f46" stroke-width="2">
+    <path d="M40 100V40h60"/>
+    <path d="M700 40h60v60"/>
+    <path d="M760 900v60h-60"/>
+    <path d="M100 960H40v-60"/>
+  </g>
+
+  <!-- abstract silhouette — deliberately not a fake face -->
+  <circle cx="400" cy="400" r="132" fill="none" stroke="#3f3f46" stroke-width="2"/>
+  <path d="M180 860c0-121 98-219 220-219s220 98 220 219" fill="none" stroke="#3f3f46" stroke-width="2"/>
+  <circle cx="400" cy="400" r="160" fill="none" stroke="#ff4d00" stroke-width="1" opacity="0.35" stroke-dasharray="4 12"/>
+
+  <g font-family="ui-monospace, 'JetBrains Mono', monospace" text-anchor="middle">
+    <text x="400" y="536" fill="#f4f4f5" font-size="26" letter-spacing="6">AKHIL</text>
+    <text x="400" y="572" fill="#52525b" font-size="13" letter-spacing="4">PHOTO PENDING</text>
+  </g>
+  <text x="400" y="926" fill="#52525b" font-family="ui-monospace, monospace" font-size="11" letter-spacing="3" text-anchor="middle">
+    DROP IMAGE AT /PUBLIC/ASSETS/ME/  ·  RUN PNPM OPTIMIZE:ASSETS
+  </text>
+</svg>
