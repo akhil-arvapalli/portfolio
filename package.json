@@ -20,7 +20,9 @@
     "assets:report": "node scripts/alpha-check.mjs",
     "photos": "node scripts/photos.mjs",
     "qa:dom": "playwright test tests/dom.spec.ts",
-    "lighthouse": "node scripts/lighthouse.mjs"
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "deploy": "vercel deploy --prod --scope akhil-arvapallis-projects -y && node scripts/pin-domain.mjs",
+    "pin:domain": "node scripts/pin-domain.mjs"
   },
   "dependencies": {
     "@fontsource/instrument-serif": "^5.3.0",

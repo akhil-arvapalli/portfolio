@@ -45,6 +45,8 @@ pnpm dev         # http://localhost:5173
 | `pnpm qa:dom` | Playwright DOM suite (needs a server on `:4173` — it starts one) |
 | `pnpm assets:report` | Report alpha-channel metadata for the portrait PNGs |
 | `pnpm lighthouse` | Run Lighthouse against the local build |
+| `pnpm deploy` | Deploy to Vercel production, then re-point the canonical domain |
+| `pnpm pin:domain` | Point `akhil-arvapalli.vercel.app` at the newest deployment |
 
 ## Layout
 
@@ -123,17 +125,34 @@ Copy `.env.example` to `.env` and fill in what you need:
 | `RESEND_API_KEY` | The optional `api/contact.ts` Vercel handler. |
 | `VITE_SITE_URL` | Canonical URL for OG tags and the sitemap. |
 
-`index.html` (`og:url`, `canonical`) and `public/sitemap.xml` / `public/robots.txt` still point at
-`https://example.com` — replace those with the real domain after the first deploy.
+`index.html` (`og:url`, `canonical`), `public/sitemap.xml` and `public/robots.txt` all point at
+`https://akhil-arvapalli.vercel.app`. If the domain changes, update all four together.
 
 ## Deployment
 
 The repo is configured for Vercel: `vercel.json` sets the framework to `vite` and rewrites all
-routes to `index.html` for client-side routing.
+routes to `index.html` for client-side routing. The Vercel project is connected to this GitHub
+repo, so **every push to `main` deploys automatically**.
 
 - Build command: `pnpm build`
 - Output directory: `dist`
 - The `api/` folder is deployed as a serverless function automatically.
+
+### The canonical domain needs a nudge
+
+Vercel auto-assigns `<project>-<team>.vercel.app` to every new deployment, but the canonical
+`akhil-arvapalli.vercel.app` is a manually created alias — it stays pinned to whichever
+deployment it was set on and goes stale on the next push.
+
+`scripts/pin-domain.mjs` re-points it. Run it after any deploy:
+
+```bash
+pnpm deploy          # deploy + re-point the domain
+pnpm pin:domain      # re-point only
+pnpm pin:domain --check   # report drift, change nothing
+```
+
+If the domain is serving an older build, run `pnpm pin:domain`.
 
 Any other static host works too — `dist/` is plain static output.
 
