@@ -45,8 +45,7 @@ pnpm dev         # http://localhost:5173
 | `pnpm qa:dom` | Playwright DOM suite (needs a server on `:4173` — it starts one) |
 | `pnpm assets:report` | Report alpha-channel metadata for the portrait PNGs |
 | `pnpm lighthouse` | Run Lighthouse against the local build |
-| `pnpm deploy` | Deploy to Vercel production, then re-point the canonical domain |
-| `pnpm pin:domain` | Point `akhil-arvapalli.vercel.app` at the newest deployment |
+| `pnpm deploy` | Deploy to Vercel production |
 
 ## Layout
 
@@ -138,21 +137,14 @@ repo, so **every push to `main` deploys automatically**.
 - Output directory: `dist`
 - The `api/` folder is deployed as a serverless function automatically.
 
-### The canonical domain needs a nudge
+### The canonical domain
 
-Vercel auto-assigns `<project>-<team>.vercel.app` to every new deployment, but the canonical
-`akhil-arvapalli.vercel.app` is a manually created alias — it stays pinned to whichever
-deployment it was set on and goes stale on the next push.
+`akhil-arvapalli.vercel.app` is registered as a **connected domain** on the Production
+environment, so Vercel re-aliases it to the most recent deployment automatically. Push to `main`
+and the canonical URL serves the new build with no extra step.
 
-`scripts/pin-domain.mjs` re-points it. Run it after any deploy:
-
-```bash
-pnpm deploy          # deploy + re-point the domain
-pnpm pin:domain      # re-point only
-pnpm pin:domain --check   # report drift, change nothing
-```
-
-If the domain is serving an older build, run `pnpm pin:domain`.
+(Registering it as a plain alias instead would leave it pinned to whichever deployment it was
+created on, and it would silently go stale on the next push.)
 
 Any other static host works too — `dist/` is plain static output.
 

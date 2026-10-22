@@ -61,8 +61,9 @@ The site is deployed continuously from `main`; there are no published version ta
 - **The canonical domain now follows the latest deploy.** Vercel auto-assigns
   `<project>-<team>.vercel.app` to every new deployment, but a manually created alias stays pinned
   to whichever deployment it was set on — so `akhil-arvapalli.vercel.app` went stale on the next
-  push. `scripts/pin-domain.mjs` re-points it after every deploy; `pnpm deploy` runs both in
-  sequence, and `pnpm pin:domain --check` reports drift without changing anything.
+  push. It is now registered as a connected domain on the Production environment, so Vercel
+  re-aliases it automatically. Verified with a test push: the domain moved to the new deployment
+  on its own.
 - `.env.example` now documents `CONTACT_TO_EMAIL`, which `api/contact.ts` reads but was missing.
 - **The album button no longer says "Portfolio".** This site *is* the portfolio, so a "Portfolio" button
   promising another portfolio was circular — and the link actually opens a Google Photos shared
