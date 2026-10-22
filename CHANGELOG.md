@@ -14,7 +14,8 @@ The site is deployed continuously from `main`; there are no published version ta
 ### Added
 - **Deployed to Vercel** — https://akhil-arvapalli.vercel.app. The `example.com`
   placeholders in `index.html` (`og:url`, `canonical`), `public/sitemap.xml`, `public/robots.txt`
-  and `.env.example` are now the real domain.
+  and `.env.example` are now the real domain. The Vercel project is named `akhil-arvapalli` and is
+  connected to the GitHub repo, so pushes build automatically.
 
 - **README.md** — setup, scripts, stack, design tokens, the photography workflow, deployment and
   accessibility notes.
@@ -200,5 +201,9 @@ The site is deployed continuously from `main`; there are no published version ta
   `api/contact.ts` handler needs `RESEND_API_KEY` and `CONTACT_TO_EMAIL`.
 - `pnpm lint` is clean — 0 errors, 0 warnings.
 - The Highstar display font needs a paid license for promotional or commercial use.
-- The Vercel project is not connected to the GitHub repo, so pushes do not trigger a build yet.
-  Run `vercel git connect --scope akhil-arvapallis-projects` to wire that up.
+- Two leftover aliases are still assigned to older deployments:
+  `akhil-arvapalli-portfolio.vercel.app` and `portfolio-drab-nu-zld06dohvm.vercel.app`. Both
+  serve the same site, so they are harmless, but they can be removed in the Vercel dashboard
+  (Project > Domains > Remove). The dashboard also shows the auto-generated
+  `akhil-arvapalli-akhil-arvapallis-projects.vercel.app`, which is unavoidable while the project
+  is named `akhil-arvapalli` under the `akhil-arvapallis-projects` team.
